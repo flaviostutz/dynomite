@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  dynomite:
+    build: .
+    image: flaviostutz/dynomite
+    ports:
+      - 8102:8102
+      - 22122:22122
+      - 22222:22222
+    healthcheck:
+      test: timeout 5 bash -c 'cat < /dev/null > /dev/tcp/localhost/8102'
+      interval: 5s
+      timeout: 5s
+      retries: 12
