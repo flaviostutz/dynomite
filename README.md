@@ -18,7 +18,11 @@ services:
       - 8102:8102
       - 22122:22122
       - 22222:22222
+    volumes:
+      - /yourdir:/var/lib/redis
 ```
+
+Mount /var/lib/redis volume for Redis data
 
 * Run "docker-compose up"
 

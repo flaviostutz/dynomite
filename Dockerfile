@@ -47,4 +47,6 @@ EXPOSE 8102
 
 ADD /startup.sh /app/startup.sh
 
+VOLUME /var/lib/redis
+
 CMD ["/app/startup.sh"]
