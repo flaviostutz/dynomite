@@ -27,12 +27,8 @@ RUN autoreconf -fvi \
     && make \
     && make install
 
-# Setting overcommit for Redis to be able to do BGSAVE/BGREWRITEAOF
-#FIXME see how to make this work
-# RUN sysctl vm.overcommit_memory=1
-
 ADD /dynomite.yml /app/
-ADD /redis.conf /etc/redis/redis.conf
+ADD /redis.conf /app/
 
 RUN mkdir -p /app \
     && cp src/dynomite /app \
@@ -44,7 +40,7 @@ EXPOSE 8101
 EXPOSE 22122
 #stats/admin port
 EXPOSE 22222
-#dynomite ui
+#dynomite
 EXPOSE 8102
 
 ADD /startup.sh /app/startup.sh

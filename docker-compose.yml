@@ -4,7 +4,7 @@ services:
 
   dynomite:
     build: .
-    image: flaviostutz/dynomite:0.7.4
+    image: flaviostutz/dynomite:0.7.5
     ports:
       - 8102:8102
       - 22122:22122
