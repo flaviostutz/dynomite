@@ -1,9 +1,18 @@
 #!/bin/bash
+set -e
 
-#make redis durable on disk
-sed -i 's/appendonly no/appendonly yes/g' /etc/redis/redis.conf
+echo "Setting kernel parameters for Redis (needs container in privileged mode)"
+sysctl vm.overcommit_memory=1
 
-#Start redis server on 22122
+echo "=================================="
+echo "Starting redis server on 22122"
+echo "=================================="
 redis-server --port 22122 &
 
-/app/dynomite --conf-file=/app/redis_single.yml -v5
+sleep 2
+
+echo "=================================="
+echo "Starting Dynomite"
+echo "=================================="
+/app/dynomite --conf-file=/app/dynomite.yml -v5
+

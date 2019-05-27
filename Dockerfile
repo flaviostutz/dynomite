@@ -31,9 +31,11 @@ RUN autoreconf -fvi \
 #FIXME see how to make this work
 # RUN sysctl vm.overcommit_memory=1
 
+ADD /dynomite.yml /app/
+ADD /redis.conf /etc/redis/redis.conf
+
 RUN mkdir -p /app \
     && cp src/dynomite /app \
-    && cp conf/redis_single.yml /app \
     && rm -rf /tmp/dynomite
 
 #peer port
